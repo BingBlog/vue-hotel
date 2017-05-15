@@ -1,0 +1,52 @@
+$base-font-size: 75;
+ 
+ 
+@function strip-units($number) {
+	@return $number / ($number * 0 + 1);
+}
+ 
+@function getEm($size, $base : $base-font-size) {
+	@return strip-units($size / $base);
+}
+ 
+@function px2rem($sizes) {
+	$result : '';
+ 
+	@each $size in $sizes {
+		$rem : $size;
+		@if $result != '' {
+			$result : $result + ' ';
+		}
+ 
+		@if type_of($size) == number {
+			$rem : getEm($size) + rem;
+		}
+ 
+		$result : $result + $rem;
+	}
+ 
+	$result : $result + ' ' + '/*#{$sizes}*/';
+	@return unquote($result);
+}
+ 
+ 
+@mixin size($property, $sizes, $useFallback : true) {
+	@if $useFallback {
+		/* Using PX for browsers not supporting rem */
+		#{$property}: $sizes;
+	}
+  
+	#{$property}: px2rem($sizes);
+}
+  
+@mixin font-size($font-size){
+    font-size: $font-size;
+
+    [data-dpr="2"] & {
+        font-size: $font-size * 2;
+    }
+
+    [data-dpr="3"] & {
+        font-size: $font-size * 3;
+    }
+}

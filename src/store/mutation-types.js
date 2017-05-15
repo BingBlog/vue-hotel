@@ -1,0 +1,7 @@
+export const CITY = 'CITY'
+export const ROOM_TYPE = 'ROOM_TYPE'
+export const LOCATION = 'LOCATION'
+export const IS_SHOW_CITY_BOX = 'IS_SHOW_CITY_BOX'
+export const IS_SHOW_DATE_PICKER = 'IS_SHOW_DATE_PICKER'
+export const KEYWORD = 'KEYWORD'
+export const CHECK_IN_OUT_INFO = 'CHECK_IN_OUT_INFO'
