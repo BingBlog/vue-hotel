@@ -36,13 +36,27 @@ module.exports = {
         target: 'http://ihotel.meituan.com/group/v1/deal/search/hotword/city/1?reqType=0&ci=1&client=iphone&utm_medium=touch&utm_term=999.9&version_name=999.9&uuid=52731044CB1B9B6344E2F6D98B1B744EE9CC95B06FE7D45B8A2B16BC56C5F303&platformid=1',
         changeOrigin: true,
       },
-      '/search': {
-        target: 'http://ihotel.meituan.com/group/v1/area/',
+      '/area/search': {
+        target: 'http://ihotel.meituan.com/group/v1/',
         changeOrigin: true,
         pathRewrite: {
-          '^/search': 'search'
+          '^/area/search': 'area/search'
+        }
+      },
+      '/search/hotword/city': {
+        target: 'https://ihotel.meituan.com/group/v1/deal/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/search/hotword/city': 'search/hotword/city'
         }
       }
+    },
+    onProxyReq: function onProxyReq(proxyReq, req, res) {
+      console.log(proxyReq);
+      console.log(proxyReq);
+      console.log(res);
+        // add custom header to request
+        // or log the req
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

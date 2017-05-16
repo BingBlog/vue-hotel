@@ -1,5 +1,5 @@
 <template>
-  <div class="search-box">
+  <div class="search-page--box">
     <div class="search-header">
       <div class="header-left" @click="changeRoomType(1)">
         <div class="content">全日房</div>
@@ -43,12 +43,14 @@
         </div>
       </div>
     </div>
-    <div class="tab-search tab-row hue-base-arrow-right" v-show="!keyword">
+    <div class="tab-search tab-row hue-base-arrow-right" v-show="!keyword"
+      @click="toChooseQuery">
       <span class="tab-row--header">搜索</span>
       <span class="my-around" style="display:none;">我的附近</span>
       <span class="tab-search--desc">位置/酒店/关键词</span>
     </div>
-    <div class="tab-search tab-row is-active" v-show="keyword">
+    <div class="tab-search tab-row is-active" v-show="keyword"
+    @click="toChooseQuery">
       <span class="tab-row--header">搜索</span>
       <span class="tab-row--keyword">{{keyword}}</span>
       <span class="tab-search-clear hue-base-icon-base" @click="deleteKeyword">✘</span>
@@ -73,6 +75,7 @@
     },
     watch: {
       route (newRoute) {
+        console.log(newRoute)
         this.CITY({
           cityName: newRoute.query['cityName'],
           cityId: newRoute.query['cityId']
@@ -108,7 +111,8 @@
         'LOCATION',
         'IS_SHOW_CITY_BOX',
         'KEYWORD',
-        'IS_SHOW_DATE_PICKER'
+        'IS_SHOW_DATE_PICKER',
+        'IS_SHOW_QUERY_SELETOR'
       ]),
       toChooseCity () {
         this.IS_SHOW_CITY_BOX(true)
@@ -118,6 +122,10 @@
       },
       toChooseDate () {
         this.IS_SHOW_DATE_PICKER(true)
+      },
+      toChooseQuery () {
+        console.log('11')
+        this.IS_SHOW_QUERY_SELETOR(true)
       },
       getLocationInfo (getUrlInfo) {
         let _self = this
@@ -160,7 +168,7 @@
 
 <style scope lang="sass">
   @import 'src/style/common'
-  .search-box
+  .search-page--box
     background: #fff;
     border-top-left-radius: px2rem(6px);
     border-top-right-radius: px2rem(6px);

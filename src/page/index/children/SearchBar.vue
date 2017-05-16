@@ -21,7 +21,7 @@
     watch: {
       queryWord () {
         let queryWord = this.queryWord
-        let queryUrl = '/search/' + queryWord
+        let queryUrl = '/area/search/' + queryWord
         if (!queryWord) {
           this.$emit('responseData', 'emptyInput')
           return

@@ -14,6 +14,7 @@ const state = {
   },
   isShowCityBox: false,
   isShowDatePicker: false,
+  isShowQuerySelector: false,
   roomType: 1, // 1: fullTimeRoom 2: hoursRoom
   checkinDate: '2017-05-05',
   checkoutDate: '2017-05-06',

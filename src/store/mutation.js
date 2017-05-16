@@ -5,14 +5,14 @@ import {
   IS_SHOW_CITY_BOX,
   KEYWORD,
   IS_SHOW_DATE_PICKER,
-  CHECK_IN_OUT_INFO
+  CHECK_IN_OUT_INFO,
+  IS_SHOW_QUERY_SELETOR
 } from './mutation-types.js'
 
 export default {
   // 当前选择的城市
   [CITY] (state, city) {
-    state.city.cityName = city.cityName
-    state.city.cityId = city.cityId
+    state.city = city
   },
   // 钟点房还是全日房
   [ROOM_TYPE] (state, roomType) {
@@ -33,5 +33,9 @@ export default {
   [CHECK_IN_OUT_INFO] (state, checkInOutInfo) {
     state.checkinDate = checkInOutInfo.checkinDate
     state.checkoutDate = checkInOutInfo.checkoutDate
+  },
+  [IS_SHOW_QUERY_SELETOR] (state, isShowQuerySelector) {
+    console.log(isShowQuerySelector)
+    state.isShowQuerySelector = isShowQuerySelector
   }
 }
