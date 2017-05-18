@@ -251,6 +251,7 @@ export default {
       }
     },
     searchPageLeftItemClick (index) {
+      this.activeLeftIndex = index
       if (this.searchMoreHotwords[index] && this.searchMoreHotwords[index].subItems.length > 0) {
         this.searchMoreRightData = this.searchMoreHotwords[index].subItems
       }

@@ -121,6 +121,14 @@
             this.scrollCityBody.scrollToElement(this.$refs['list-title-' + newScrollLetter][0], 200, 0, -this.$refs.cityHeader.clientHeight)
           }
         }
+      },
+      isShowCityBody (newIsShowCityBody) {
+        console.log('aaaaaaaaa')
+        if (newIsShowCityBody) {
+          this.LETTERS_CONFIG(this.letters)
+        } else {
+          this.LETTERS_CONFIG([])
+        }
       }
     },
     computed: mapState({
