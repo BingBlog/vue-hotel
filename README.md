@@ -30,7 +30,7 @@
 
 # 项目截图
  1. 首页整体效果
-<img src="./exampleImg/index.png =200" width="200" alt="首页整体效果" text-align="left"/>
+<img src="./exampleImg/index.png" width="200" alt="首页整体效果" text-align="left"/>
  2. 城市选择列表
 ![城市选择列表](./exampleImg/city.png)
  3. 城市搜索列表
