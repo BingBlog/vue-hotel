@@ -17,6 +17,7 @@
   </div>
 </template>
 <script>
+  import {ApiSearchSuggest} from '@/config/API'
   export default {
     name: 'searchBar',
     data () {
@@ -35,7 +36,7 @@
       queryWord (e) {
         // uuid=5FCDB68D168F8554350D79A2F8918E950BB4C0811BA23BF856533585029658BD&input=%E4%B8%89
         let queryWord = e.target.value
-        let queryUrl = '/search/suggest/' + this.city.cityId
+        let queryUrl = ApiSearchSuggest + this.city.cityId
         if (!queryWord.trim()) {
           this.$emit('responseData', 'emptyInput')
           return

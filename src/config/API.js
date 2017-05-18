@@ -1,0 +1,5 @@
+export const ApiAdverts = '/adverts'
+export const ApiAreaSearch = '/area/search/'
+export const ApiSearchSuggest = '/search/suggest/'
+export const ApiSearchHotwordCity = '/search/hotword/city/'
+export const ApiSearchMoreHotwordCity = '/search/morehotword/city/'

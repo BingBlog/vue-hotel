@@ -10,6 +10,7 @@
   </div>
 </template>
 <script>
+  import {ApiAreaSearch} from '@/config/API'
   export default {
     name: 'searchBar',
     data () {
@@ -26,7 +27,7 @@
     methods: {
       queryWord (e) {
         let queryWord = e.target.value
-        let queryUrl = '/area/search/' + queryWord
+        let queryUrl = ApiAreaSearch + queryWord
         if (!queryWord.trim()) {
           this.$emit('responseData', 'emptyInput')
           return

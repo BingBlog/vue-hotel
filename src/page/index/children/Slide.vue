@@ -13,6 +13,7 @@
   </div> 
 </template>
 <script>
+    import {ApiAdverts} from '@/config/API'
     export default {
       name: 'slide',
       data () {
@@ -43,7 +44,7 @@
       methods: {
         // 获取滑动图片的数据
         getSlideData () {
-          this.$http.get('/adverts').then(
+          this.$http.get(ApiAdverts).then(
               this.passSlideData
           )
           .catch(function (error) {

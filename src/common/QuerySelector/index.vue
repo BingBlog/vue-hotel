@@ -115,6 +115,7 @@
 import searchBar from './searchBar'
 import { mapState, mapMutations } from 'vuex'
 import BScroll from 'better-scroll'
+import {ApiSearchHotwordCity, ApiSearchMoreHotwordCity} from '@/config/API'
 const onlyOneLevelType = [4, 5, 6] // 景点 学校 医院
 export default {
   name: 'QuerySelector',
@@ -185,7 +186,7 @@ export default {
     ]),
     requestHotwordData (city) {
       console.log('getHotwordData')
-      let url = '/search/hotword/city/' + city.cityId
+      let url = ApiSearchHotwordCity + city.cityId
       console.log(url)
       this.$http.get(url, {
         params: {
@@ -227,7 +228,7 @@ export default {
       }
     },
     toQueryMore (dataType) {
-      let url = '/search/morehotword/city/' + this.city.cityId
+      let url = ApiSearchMoreHotwordCity + this.city.cityId
       this.$http.get(url, {
         params: {
           reqType: dataType,
