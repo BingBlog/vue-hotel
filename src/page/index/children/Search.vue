@@ -53,7 +53,7 @@
     @click="toChooseQuery">
       <span class="tab-row--header">搜索</span>
       <span class="tab-row--keyword">{{keyword}}</span>
-      <span class="tab-search-clear hue-base-icon-base" @click="deleteKeyword">✘</span>
+      <span class="tab-search-clear hue-base-icon-base" @click.stop="deleteKeyword">✘</span>
     </div>
     <div class="tab-btn">
       <button type="button" class="hue-base-button-block-btn-green">查找酒店</button>

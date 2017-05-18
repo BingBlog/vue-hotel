@@ -16,9 +16,9 @@
 <script>
 import Slide from '@/page/index/children/Slide'
 import Search from '@/page/index/children/Search'
-import City from '@/page/index/children/City'
+import City from '@/page/index/children/City/index'
 import Datepicker from '@/page/index/children/Datepicker'
-import QuerySelector from '@/page/index/children/QuerySelector'
+import QuerySelector from '@/common/QuerySelector/index'
 import LetterSelector from '@/common/letterSelector'
 import { mapState } from 'vuex'
 export default {
