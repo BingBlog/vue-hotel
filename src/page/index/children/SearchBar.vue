@@ -5,24 +5,29 @@
     </button>
     <label class="header-search-box">
       <i class="hue-base-icon-base search-box--icon">Ƣ</i>
-      <input class="search-box--input" type="text" v-model.trim="queryWord" placeholder="位置／酒店名／关键词">
+      <input ref="inputEl" class="search-box--input" type="text" @input="queryWord" placeholder="位置／酒店名／关键词">
     </label>
   </div>
 </template>
 <script>
-  import { mapMutations } from 'vuex'
   export default {
     name: 'searchBar',
     data () {
-      return {
-        queryWord: ''
-      }
+      return {}
     },
     watch: {
-      queryWord () {
-        let queryWord = this.queryWord
+      resetInput (newResetInput) {
+        this.emptyInput()
+      }
+    },
+    props: {
+      resetInput: Boolean
+    },
+    methods: {
+      queryWord (e) {
+        let queryWord = e.target.value
         let queryUrl = '/area/search/' + queryWord
-        if (!queryWord) {
+        if (!queryWord.trim()) {
           this.$emit('responseData', 'emptyInput')
           return
         }
@@ -33,29 +38,21 @@
           console.log(error)
         })
       },
-      isShowCityBody () {
-        console.log(this.isShowCityBody)
-        if (this.isShowCityBody) {
-          this.queryWord = ''
-        }
-      }
-    },
-    props: ['isShowCityBody'],
-    methods: {
-      ...mapMutations([
-        'IS_SHOW_CITY_BOX'
-      ]),
       getQueryData (response) {
         if (response.data && response.data.data) {
           this.$emit('responseData', response.data.data)
         }
       },
       CancelBtnClick () {
-        if (this.queryWord) {
-          this.queryWord = ''
+        if (this.$refs.inputEl.value) {
+          this.emptyInput()
         } else {
-          this.IS_SHOW_CITY_BOX(false)
+          this.$emit('responseData', 'close')
         }
+      },
+      emptyInput () {
+        this.$refs.inputEl.value = ''
+        this.$emit('responseData', 'emptyInput')
       }
     }
   }

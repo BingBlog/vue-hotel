@@ -2,9 +2,14 @@
   <div class="index">
     <slide></slide>
     <search></search>
-    <city></city>
+    <city :scrollLetter="scrollLetter"></city>
     <datepicker></datepicker>
-    <query-selector></query-selector>
+    <query-selector :scrollLetter="scrollLetter"></query-selector>
+    <letter-selector
+      :lettersConfig="lettersConfig"
+      v-on:itemClick="letterItemClick"
+      >
+    </letter-selector>
   </div>
 </template>
 
@@ -14,17 +19,31 @@ import Search from '@/page/index/children/Search'
 import City from '@/page/index/children/City'
 import Datepicker from '@/page/index/children/Datepicker'
 import QuerySelector from '@/page/index/children/QuerySelector'
+import LetterSelector from '@/common/letterSelector'
+import { mapState } from 'vuex'
 export default {
   name: 'index',
   data () {
-    return {}
+    return {
+      scrollLetter: ''
+    }
+  },
+  computed: mapState({
+    lettersConfig: 'lettersConfig'
+  }),
+  methods: {
+    letterItemClick (letter) {
+      this.scrollLetter = letter
+      console.log(letter)
+    }
   },
   components: {
     Slide,
     Search,
     City,
     Datepicker,
-    QuerySelector
+    QuerySelector,
+    LetterSelector
   }
 }
 </script>

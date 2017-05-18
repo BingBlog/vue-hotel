@@ -6,7 +6,8 @@ import {
   KEYWORD,
   IS_SHOW_DATE_PICKER,
   CHECK_IN_OUT_INFO,
-  IS_SHOW_QUERY_SELETOR
+  IS_SHOW_QUERY_SELETOR,
+  LETTERS_CONFIG
 } from './mutation-types.js'
 
 export default {
@@ -37,5 +38,8 @@ export default {
   [IS_SHOW_QUERY_SELETOR] (state, isShowQuerySelector) {
     console.log(isShowQuerySelector)
     state.isShowQuerySelector = isShowQuerySelector
+  },
+  [LETTERS_CONFIG] (state, LETTERS_CONFIG) {
+    state.lettersConfig = LETTERS_CONFIG
   }
 }

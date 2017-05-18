@@ -49,6 +49,13 @@ module.exports = {
         pathRewrite: {
           '^/search/hotword/city': 'search/hotword/city'
         }
+      },
+      '/search/morehotword/city': {
+        target: 'https://ihotel.meituan.com/group/v1/deal/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/search/morehotword/city': 'search/morehotword/city'
+        }
       }
     },
     onProxyReq: function onProxyReq(proxyReq, req, res) {

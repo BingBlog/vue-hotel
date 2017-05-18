@@ -18,7 +18,8 @@ const state = {
   roomType: 1, // 1: fullTimeRoom 2: hoursRoom
   checkinDate: '2017-05-05',
   checkoutDate: '2017-05-06',
-  keyword: ''
+  keyword: '',
+  lettersConfig: []
 }
 
 export default new Vuex.Store({

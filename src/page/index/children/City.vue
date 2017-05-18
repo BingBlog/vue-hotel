@@ -54,12 +54,7 @@
       </div>
     </div>
     <div class="city-header" ref="cityHeader">
-      <search-bar v-on:responseData="showResponseData" :isShowCityBody="isShowCityBody"></search-bar>
-    </div>
-    <div class="list-bar list-bar-transition" v-show="isShowCityBody">
-      <div class="list-bar-inner">
-        <div class="list-bar-letter" v-for="letter in letters" @click="letterItemClick(letter)"> {{letter}} </div>
-      </div>
+      <search-bar v-on:responseData="showResponseData" :resetInput="isShowCityBox"></search-bar>
     </div>
   </div> 
 </template>
@@ -75,10 +70,13 @@
         hotCity: [],
         cityList: [],
         letterList: [],
-        letters: ['A', 'B', 'C', 'D', 'E', 'F', 'D', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'W', 'X', 'Y', 'Z'],
         queryCityList: [],
-        isShowCityBody: true
+        isShowCityBody: true,
+        letters: []
       }
+    },
+    props: {
+      scrollLetter: String
     },
     components: {
       SearchBar
@@ -88,8 +86,10 @@
     },
     watch: {
       isShowCityBox (isShowCityBox) {
-        console.log(isShowCityBox)
+        console.log('isShowCityBox:' + isShowCityBox)
         if (isShowCityBox) {
+          // 根据是否显示 CityBox 来确定 letter组件的展示内容
+          this.LETTERS_CONFIG(this.letters)
           this.$nextTick(() => {
             this.scrollCityBody = new BScroll(this.$refs.cityBody, {
               probeType: 3,
@@ -101,6 +101,25 @@
             })
             this.scrollCityBody.scrollTo(0, 0)
           })
+        } else {
+          this.LETTERS_CONFIG([])
+        }
+      },
+      cityList (newCityList) {
+        this.letters = newCityList.reduce((letters, item, index, array) => {
+          let letter = item.pinyin.charAt(0).toUpperCase()
+          if (letters.indexOf(letter) === -1) {
+            letters.push(letter)
+          }
+          return letters
+        }, [])
+      },
+      scrollLetter (newScrollLetter) {
+        if (newScrollLetter && this.isShowCityBox) {
+          if (this.$refs['list-title-' + newScrollLetter][0]) {
+            console.log(this.$refs['list-title-' + newScrollLetter])
+            this.scrollCityBody.scrollToElement(this.$refs['list-title-' + newScrollLetter][0], 200, 0, -this.$refs.cityHeader.clientHeight)
+          }
         }
       }
     },
@@ -114,7 +133,8 @@
     methods: {
       ...mapMutations([
         'CITY',
-        'IS_SHOW_CITY_BOX'
+        'IS_SHOW_CITY_BOX',
+        'LETTERS_CONFIG'
       ]),
       getCityList () {
         setTimeout(this.getCityListInfo, 200)
@@ -143,12 +163,6 @@
           return city.pinyin.charAt(0).toUpperCase() !== cityList[index - 1].pinyin.charAt(0).toUpperCase()
         }
       },
-      letterItemClick (letter) {
-        if (document.querySelector('.list-title-' + letter)) {
-          console.log(this.$refs['list-title-' + letter])
-          this.scrollCityBody.scrollToElement(this.$refs['list-title-' + letter][0], 200, 0, -this.$refs.cityHeader.clientHeight)
-        }
-      },
       locationClick () {
         let location = this.location
         this.cityItemClick({
@@ -157,14 +171,14 @@
         })
       },
       showResponseData (showResponseData) {
-        console.log(showResponseData)
-        this.displayCityBody()
         if (showResponseData === 'emptyInput') {
+          this.displayCityBody()
+        } else if (showResponseData === 'close') {
+          console.log('close')
+          this.IS_SHOW_CITY_BOX(false)
         } else if (showResponseData.length > 0) {
           this.queryCityList = showResponseData
           this.displayQueryList()
-        } else {
-          console.log('emptyResponse')
         }
       },
       displayQueryList () {
@@ -184,6 +198,7 @@
         this.isShowCityBody = true
       },
       queryItemClick (query) {
+        console.log('times')
         let routeQuery = {}
         this.displayCityBody()
         if (query.areaName) {
@@ -202,7 +217,9 @@
           path: '/',
           query: routeQuery
         })
-        this.IS_SHOW_CITY_BOX(false)
+        if (this.isShowCityBox) {
+          this.IS_SHOW_CITY_BOX(false)
+        }
       }
     }
   }
@@ -313,40 +330,5 @@
             color: #999;
             margin-right: px2rem(40px);
             font-size: px2rem(30px);
-    .list-bar
-      position: fixed;
-      width: px2rem(60px);
-      max-height: 85%;
-      top: 15%;
-      right: 0;
-      text-align: right;
-      z-index: 100;
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-      -webkit-transition: -webkit-transform .3s cubic-bezier(.25,.46,.45,.94);
-      transition: -webkit-transform .3s cubic-bezier(.25,.46,.45,.94);
-      transition: transform .3s cubic-bezier(.25,.46,.45,.94);
-      transition: transform .3s cubic-bezier(.25,.46,.45,.94),-webkit-transform .3s cubic-bezier(.25,.46,.45,.94);
-      -webkit-perspective: 1000;
-      perspective: 1000;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      .list-bar-inner
-        display: inline-block;
-        max-height: 100%;
-        @include size('padding', 20px 4px);
-        background-color: rgba(0,0,0,.2);
-        border-radius: px2rem(22px);
-        width: px2rem(34px);
-        margin-right: px2rem(5px);
-        text-align: center;
-        .list-bar-letter
-          position: relative;
-          font-size: px2rem(20px);
-          line-height: px2rem(35px);
-          color: #fff;
-          width: px2rem(60px);
-          margin-left: px2rem(-18px);
-          text-align: center;
 </style>
 
