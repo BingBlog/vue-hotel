@@ -30,13 +30,13 @@
 
 # 项目截图
  1. 首页整体效果
-![首页整体效果](./exampleImg/index.png)
+![首页整体效果](./exampleImg/index.png =200)
  2. 城市选择列表
 ![城市选择列表](./exampleImg/city.png)
  3. 城市搜索列表
 ![城市搜索列表](./exampleImg/citySearch.png)
  4. 首页日期选择
-![首页日期选择](./exampleImg/canlendar.png)
+![首页日期选择](./exampleImg/calendar.png)
  5. 热词选择
 ![热词选择](./exampleImg/hotword.png)
  6. 地铁选择
