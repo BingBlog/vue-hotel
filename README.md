@@ -30,14 +30,14 @@
 
 # 项目截图
  1. 首页整体效果
-<img src="./exampleImg/index.png" width="200" alt="首页整体效果" text-align="left"/>
+<img src="./exampleImg/index.png" width="380" alt="首页整体效果" text-align="left" />
  2. 城市选择列表
-![城市选择列表](./exampleImg/city.png)
+<img src="./exampleImg/city.png" width="380" alt="城市选择列表" text-align="left" />
  3. 城市搜索列表
-![城市搜索列表](./exampleImg/citySearch.png)
+<img src="./exampleImg/citySearch.png" width="380" alt="城市搜索列表" text-align="left" />
  4. 首页日期选择
-![首页日期选择](./exampleImg/calendar.png)
+<img src="./exampleImg/calendar.png" width="380" alt="首页日期选择" text-align="left" />
  5. 热词选择
-![热词选择](./exampleImg/hotword.png)
+<img src="./exampleImg/hotword.png" width="380" alt="热词选择" text-align="left" />
  6. 地铁选择
-![地铁选择](./exampleImg/subway.png)
+<img src="./exampleImg/subway.png" width="380" alt="地铁选择" text-align="left" />
